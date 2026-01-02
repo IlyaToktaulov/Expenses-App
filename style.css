@@ -1,0 +1,8 @@
+.status {
+    color: green;
+    font-weight: 800;
+}
+
+.status_red {
+    color: red;
+}
