@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expenses Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Expenses Tracker</h1>
-
-    <input
-        class="js-expense-input expense-input" 
-        type="number">
+    <div class="container">
+        <h1>Учёт расходов</h1>
+        <input
+            class="js-expense-input expense-input"
+            placeholder="руб"
+            type="number">
         
-    <button class="js-expense-btn expense-btn">Добавить</button>
-
-    <p>Лимит: <span class="js-limit"></span> руб.</p>
-    <p>Сумма: <span class="js-total">0</span> руб.</p>
-    <p>Статус: <span class="js-status status">Всё хорошо</span></p>
-
-    <h2>История трат</h2>
-    <div class="js-history-list history-list"></div>
+        <button class="js-expense-btn expense-btn">Добавить</button>
+        <div class="status_element">
+            <div class="user_value">
+                <p class="value">Лимит: <span class="js-limit"></span> руб.</p>
+                <p class="value">Всего: <span class="js-total"></span> руб.</p>
+                <p class="value">Статус: <span class="js-status status">Всё хорошо</span></p>
+            </div>
+            <div class="history">
+                <h2>История:</h2>
+                <div class="js-history-list history-list"></div>
+            </div>
+        </div>
+    </div>
+   
 
     <script src="script.js"></script>
 </body>
