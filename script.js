@@ -28,14 +28,16 @@ buttonNode.addEventListener('click', function() {
     // 2. Добавляем трату в список
     trackExpense(expense);
     
+    // 3. Вывод нового списка трат
     render(expenses);
+
 })
 
 function render(expenses) {
     const sum = calculateExpenses(expenses);
     renderHistory(expenses);
     renderSum(sum);
-    renderStatus(sum);
+    renderStatus(expenses);
 }
 
 function init(expenses) {
