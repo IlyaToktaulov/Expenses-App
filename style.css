@@ -1,9 +1,30 @@
 body {
     font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
+.container {
+margin-top: 200px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.history-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+}
 
 .expense-input {
+    margin-bottom: 51px;
     width: 350px;
     font-size: 28px;
     line-height: 36px;
@@ -34,14 +55,24 @@ body {
 }
 
 .value {
-    font-size: 20px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
+.status-value {
+    margin-top: 40px;
+}
 
+.expense-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-
-
-
+.expense-list_element {
+    font-size: 20px;
+}
 
 .status {
     color: green;

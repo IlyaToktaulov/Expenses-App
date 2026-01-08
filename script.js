@@ -27,7 +27,7 @@ buttonNode.addEventListener('click', function() {
 
     // 2. Добавляем трату в список
     trackExpense(expense);
-    
+
     // 3. Вывод нового списка трат
     render(expenses);
 
@@ -80,11 +80,11 @@ function renderHistory(expenses) {
     let expensesListHTML = '';
 
     expenses.forEach(element => {
-        const elementHTML = `<li>${element} ${CURRENCY}</li>`;
+        const elementHTML = `<li class="expense-list_element">${element} ${CURRENCY}</li>`;
         expensesListHTML += elementHTML;
     });
     
-    historyNode.innerHTML = `<ol>${expensesListHTML}</ol>`;
+    historyNode.innerHTML = `<ol class="expense-list">${expensesListHTML}</ol>`;
 }
 
 function renderSum(sum) {

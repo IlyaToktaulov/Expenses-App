@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expenses Tracker</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Учёт расходов</h1>
+        <h1 class="title">Учет расходов</h1>
         <input
             class="js-expense-input expense-input"
             placeholder="руб"
@@ -22,10 +23,10 @@
             <div class="user_value">
                 <p class="value">Лимит: <span class="js-limit"></span> руб.</p>
                 <p class="value">Всего: <span class="js-total"></span> руб.</p>
-                <p class="value">Статус: <span class="js-status status">Всё хорошо</span></p>
+                <p class="value status-value">Статус: <span class="js-status status">Всё хорошо</span></p>
             </div>
             <div class="history">
-                <h2>История:</h2>
+                <h2 class="history-title">История:</h2>
                 <div class="js-history-list history-list"></div>
             </div>
         </div>
