@@ -11,6 +11,7 @@ const historyNode = document.querySelector('.js-history-list');
 const sumNode = document.querySelector('.js-total');
 const limitNode = document.querySelector('.js-limit');
 const statusNode = document.querySelector('.js-status');
+const categorySelectNode = document.querySelector('.js-group-input');
 
 let expenses = [];
 
@@ -33,7 +34,7 @@ function trackExpense(expense) {
     expenses.push(expense);
 }
 
-function getExpenseFromUser() {
+function getExpenseFromUser(category) {
     if (inputNode.value === '') {
         return null;
     }
@@ -53,7 +54,7 @@ function calculateExpenses(expenses) {
     let sum = 0;
     
     expenses.forEach(element => {
-        sum += element;
+        sum += element.amount;
     });
 
     return sum;
@@ -63,7 +64,7 @@ function renderHistory(expenses) {
     let expensesListHTML = '';
 
     expenses.forEach(element => {
-        const elementHTML = `<li class="expense-list_element">${element} ${CURRENCY}</li>`;
+        const elementHTML = `<li class="expense-list_element">${element.categories}: ${element.amount} ${CURRENCY}</li>`;
         expensesListHTML += elementHTML;
     });
     
@@ -86,6 +87,10 @@ function renderStatus(expenses) {
     }
 }
 
+const getSelectedCategory = () => {
+    return categorySelectNode.value;
+}
+
 const addButtonHandler = () => {
     // 1. Получаем значение из поля ввода
     const expense = getExpenseFromUser();
@@ -94,11 +99,22 @@ const addButtonHandler = () => {
         return;
     }
     
+    const currentCategory = getSelectedCategory();
+
+    if (currentCategory === 'Категория') {
+        return;
+    }
+
+    const newExpense = { amount: expense, categories: currentCategory};
+    console.log(newExpense);
+    
+
     // 2. Добавляем трату в список
-    trackExpense(expense);
+    trackExpense(newExpense);
     
     // 3. Вывод нового списка трат
     render(expenses);
+
 }
 
 const resetButtonHandler = () => {

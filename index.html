@@ -14,12 +14,21 @@
     <div class="container">
         <h1 class="title">Учет расходов</h1>
         <input
-            class="js-expense-input expense-input"
+            class="js-expense-input input expense-input"
             placeholder="руб"
             min="0"
             type="number">
         
         <button class="js-expense-btn expense-btn">Добавить</button>
+
+        <select class="js-group-input input group-input">
+            <option hidden disabled selected value="Категория">Категория</option>
+            <option value="Продукты">Продукты</option>
+            <option value="Кафе">Кафе и рестораны</option>
+            <option value="Услуги ЖКХ">Услуги ЖКХ</option>
+            <option value="Транспорт">Транспорт</option>
+        </select>
+
         <div class="status_element">
             <div class="user_value">
                 <p class="user_value-text">
