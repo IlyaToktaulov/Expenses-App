@@ -6,32 +6,15 @@ const STATUS_OUT_OF_LIMIT_CLASSNAME = 'status_red';
 
 const inputNode = document.querySelector('.js-expense-input');
 const buttonNode = document.querySelector('.js-expense-btn');
+const resetButton = document.querySelector('.js-clearButton');
 const historyNode = document.querySelector('.js-history-list');
 const sumNode = document.querySelector('.js-total');
 const limitNode = document.querySelector('.js-limit');
 const statusNode = document.querySelector('.js-status');
 
-const expenses = [];
+let expenses = [];
 
 init(expenses);
-
-
-buttonNode.addEventListener('click', function() {
-
-    // 1. Получаем значение из поля ввода
-    const expense = getExpenseFromUser();
-
-    if (!expense) {
-        return;
-    }
-
-    // 2. Добавляем трату в список
-    trackExpense(expense);
-
-    // 3. Вывод нового списка трат
-    render(expenses);
-
-})
 
 function render(expenses) {
     const sum = calculateExpenses(expenses);
@@ -96,8 +79,33 @@ function renderStatus(expenses) {
 
     if (sum <= LIMIT) {
         statusNode.innerText = STATUS_IN_LIMIT;
+        statusNode.className = 'status';
     } else {
-        statusNode.innerText = STATUS_OUT_OF_LIMIT;
+        statusNode.innerText = `${STATUS_OUT_OF_LIMIT} (${LIMIT - sum} руб.)`;
         statusNode.classList.add(STATUS_OUT_OF_LIMIT_CLASSNAME);
     }
 }
+
+const addButtonHandler = () => {
+    // 1. Получаем значение из поля ввода
+    const expense = getExpenseFromUser();
+    
+    if (!expense) {
+        return;
+    }
+    
+    // 2. Добавляем трату в список
+    trackExpense(expense);
+    
+    // 3. Вывод нового списка трат
+    render(expenses);
+}
+
+const resetButtonHandler = () => {
+    // Сбрасываем счётчик
+    expenses = [];
+    render(expenses);
+}
+
+buttonNode.addEventListener('click', addButtonHandler);
+resetButton.addEventListener('click', resetButtonHandler);

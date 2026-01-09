@@ -16,20 +16,29 @@
         <input
             class="js-expense-input expense-input"
             placeholder="руб"
+            min="0"
             type="number">
         
         <button class="js-expense-btn expense-btn">Добавить</button>
         <div class="status_element">
             <div class="user_value">
-                <p class="value">Лимит: <span class="js-limit"></span> руб.</p>
-                <p class="value">Всего: <span class="js-total"></span> руб.</p>
-                <p class="value status-value">Статус: <span class="js-status status">Всё хорошо</span></p>
+                <p class="user_value-text">
+                    <span class="label">Лимит:</span> 
+                    <span class="js-limit"></span> руб.</p>
+                <p class="user_value-text">
+                    <span class="label">Всего:</span> 
+                    <span class="js-total"></span> руб.</p>
+                <p class="user_value-text user_value-text-status">
+                    <span class="label">Статус:</span> 
+                    <span class="js-status status"></span></p>
             </div>
             <div class="history">
                 <h2 class="history-title">История:</h2>
                 <div class="js-history-list history-list"></div>
             </div>
         </div>
+
+        <button class="js-clearButton clearButton">Сбросить расходы</button>
     </div>
    
 
