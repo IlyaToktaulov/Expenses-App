@@ -1,4 +1,4 @@
-const LIMIT = 10000;
+const CHANGE_LIMIT_TEXT = 'Введите лимит'
 const CURRENCY = 'руб.';
 const STATUS_IN_LIMIT = 'Всё хорошо';
 const STATUS_OUT_OF_LIMIT = 'Всё плохо';
@@ -12,8 +12,10 @@ const sumNode = document.querySelector('.js-total');
 const limitNode = document.querySelector('.js-limit');
 const statusNode = document.querySelector('.js-status');
 const categorySelectNode = document.querySelector('.js-group-input');
+const changeLimitBtn = document.querySelector('.js-change-limit');
 
 let expenses = [];
+let LIMIT = 0;
 
 init(expenses);
 
@@ -106,9 +108,7 @@ const addButtonHandler = () => {
     }
 
     const newExpense = { amount: expense, categories: currentCategory};
-    console.log(newExpense);
     
-
     // 2. Добавляем трату в список
     trackExpense(newExpense);
     
@@ -123,5 +123,20 @@ const resetButtonHandler = () => {
     render(expenses);
 }
 
+const changeLimitHandler = () => {
+    const newLimit = prompt(CHANGE_LIMIT_TEXT);
+
+    const newLimitValue = parseInt(newLimit);
+
+    if (!newLimitValue) {
+        return;
+    }
+
+    limitNode.innerText = newLimitValue;
+    LIMIT = newLimitValue;
+
+}
+
 buttonNode.addEventListener('click', addButtonHandler);
 resetButton.addEventListener('click', resetButtonHandler);
+changeLimitBtn.addEventListener('click', changeLimitHandler);

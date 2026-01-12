@@ -115,3 +115,9 @@ margin-top: 100px;
     color: red;
     font-weight: 400;
 }
+
+
+.change-limit {
+    width: 20px;
+    cursor: pointer;
+}
