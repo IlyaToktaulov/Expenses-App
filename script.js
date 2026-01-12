@@ -17,6 +17,8 @@ const changeLimitBtn = document.querySelector('.js-change-limit');
 let expenses = [];
 let LIMIT = 0;
 
+limitNode.innerText = localStorage.getItem('limit');
+
 init(expenses);
 
 function render(expenses) {
@@ -27,7 +29,7 @@ function render(expenses) {
 }
 
 function init(expenses) {
-    limitNode.innerText = LIMIT;
+    limitNode.innerText = limitNode.innerText = localStorage.getItem('limit');;
     statusNode.innerText = STATUS_IN_LIMIT;
     sumNode.innerText = calculateExpenses(expenses);
 }
@@ -38,6 +40,7 @@ function trackExpense(expense) {
 
 function getExpenseFromUser(category) {
     if (inputNode.value === '') {
+        alert('Введите сумму');
         return null;
     }
 
@@ -104,6 +107,7 @@ const addButtonHandler = () => {
     const currentCategory = getSelectedCategory();
 
     if (currentCategory === 'Категория') {
+        alert('Выберите категорию');
         return;
     }
 
@@ -134,6 +138,8 @@ const changeLimitHandler = () => {
 
     limitNode.innerText = newLimitValue;
     LIMIT = newLimitValue;
+
+    localStorage.setItem('limit', newLimitValue);
 
 }
 
