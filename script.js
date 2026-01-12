@@ -3,6 +3,8 @@ const CURRENCY = 'руб.';
 const STATUS_IN_LIMIT = 'Всё хорошо';
 const STATUS_OUT_OF_LIMIT = 'Всё плохо';
 const STATUS_OUT_OF_LIMIT_CLASSNAME = 'status_red';
+const STORAGE_LABEL_LIMIT = 'limit';
+const STARAGE_LABEL_EXPENSES = 'expenses';
 
 const inputNode = document.querySelector('.js-expense-input');
 const buttonNode = document.querySelector('.js-expense-btn');
@@ -14,10 +16,14 @@ const statusNode = document.querySelector('.js-status');
 const categorySelectNode = document.querySelector('.js-group-input');
 const changeLimitBtn = document.querySelector('.js-change-limit');
 
+const expensesFromStorageString = localStorage.getItem(STARAGE_LABEL_EXPENSES);
+const expensesFromStorage = JSON.parse(expensesFromStorageString);
 let expenses = [];
-let LIMIT = 0;
+if (Array.isArray(expensesFromStorage)) {
+    expenses = expensesFromStorage;
+}
 
-limitNode.innerText = localStorage.getItem('limit');
+let LIMIT = limitNode.innerText;
 
 init(expenses);
 
@@ -29,13 +35,20 @@ function render(expenses) {
 }
 
 function init(expenses) {
-    limitNode.innerText = limitNode.innerText = localStorage.getItem('limit');;
+    limitNode.innerText = localStorage.getItem(STORAGE_LABEL_LIMIT);
     statusNode.innerText = STATUS_IN_LIMIT;
     sumNode.innerText = calculateExpenses(expenses);
 }
 
 function trackExpense(expense) {
     expenses.push(expense);
+}
+
+saveExpensesToStorage();
+
+function saveExpensesToStorage() {
+    const expensesString = JSON.stringify(expenses);
+    localStorage.setItem(STARAGE_LABEL_EXPENSES, expensesString);
 }
 
 function getExpenseFromUser(category) {
@@ -53,6 +66,22 @@ function getExpenseFromUser(category) {
 
 function clearInput() {
     inputNode.value = null;
+}
+
+const changeLimitHandler = () => {
+    const newLimit = prompt(CHANGE_LIMIT_TEXT);
+
+    const newLimitValue = parseInt(newLimit);
+
+    if (!newLimitValue) {
+        return;
+    }
+
+    limitNode.innerText = newLimitValue;
+    LIMIT = newLimitValue;
+
+    localStorage.setItem(STORAGE_LABEL_LIMIT, newLimitValue);
+
 }
 
 function calculateExpenses(expenses) {
@@ -125,22 +154,6 @@ const resetButtonHandler = () => {
     // Сбрасываем счётчик
     expenses = [];
     render(expenses);
-}
-
-const changeLimitHandler = () => {
-    const newLimit = prompt(CHANGE_LIMIT_TEXT);
-
-    const newLimitValue = parseInt(newLimit);
-
-    if (!newLimitValue) {
-        return;
-    }
-
-    limitNode.innerText = newLimitValue;
-    LIMIT = newLimitValue;
-
-    localStorage.setItem('limit', newLimitValue);
-
 }
 
 buttonNode.addEventListener('click', addButtonHandler);
